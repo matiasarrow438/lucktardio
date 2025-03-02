@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuckTardio - St. Patrick's Day Memecoin</title>
+    <style>
+        :root {
+            --primary-green: #169B62;
+            --dark-green: #0D5D3A;
+            --gold: #FFD700;
+            --emerald: #50C878;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            min-height: 100vh;
+            background: linear-gradient(
+                135deg,
+                #0D5D3A 0%,
+                #169B62 50%,
+                #0D5D3A 100%
+            );
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Celtic knot pattern overlay */
+        .celtic-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0C13.4315 0 0 13.4315 0 30C0 46.5685 13.4315 60 30 60C46.5685 60 60 46.5685 60 30C60 13.4315 46.5685 0 30 0ZM30 48C20.0589 48 12 39.9411 12 30C12 20.0589 20.0589 12 30 12C39.9411 12 48 20.0589 48 30C48 39.9411 39.9411 48 30 48Z' fill='%23169B62' fill-opacity='0.05'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        /* Gradient background with Irish colors */
+        .irish-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(120deg, 
+                    rgba(13, 93, 58, 0.9) 0%,
+                    rgba(22, 155, 98, 0.8) 50%,
+                    rgba(13, 93, 58, 0.9) 100%);
+            z-index: -2;
+        }
+
+        /* Floating shamrock background */
+        .shamrock-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-shamrock {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.1;
+            animation: floatShamrock 20s linear infinite;
+        }
+
+        @keyframes floatShamrock {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Enhanced section styling */
+        section {
+            background: rgba(10, 40, 24, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        section:nth-child(even) {
+            background: rgba(13, 93, 58, 0.7);
+        }
+
+        /* Gold accent for section borders */
+        .section-divider {
+            height: 3px;
+            background: linear-gradient(90deg, 
+                transparent,
+                rgba(255, 215, 0, 0.5),
+                transparent
+            );
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .mascot-image {
+            width: 300px;
+            height: auto;
+            margin-bottom: 30px;
+            animation: glow 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+        }
+
+        @keyframes glow {
+            0% { 
+                filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+            }
+            50% { 
+                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+            }
+            100% { 
+                filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            text-decoration: none;  /* Remove underline */
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--dark-green);
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 50px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .shamrock {
+            position: absolute;
+            opacity: 0;
+            font-size: 2rem;
+            animation: float-shamrock 8s ease-in-out infinite;
+        }
+
+        .shamrock:nth-child(1) { left: 5%; top: 15%; animation-delay: 0s; }
+        .shamrock:nth-child(2) { left: 85%; top: 25%; animation-delay: 1s; }
+        .shamrock:nth-child(3) { left: 15%; top: 45%; animation-delay: 2s; }
+        .shamrock:nth-child(4) { left: 75%; top: 65%; animation-delay: 3s; }
+        .shamrock:nth-child(5) { left: 25%; top: 85%; animation-delay: 4s; }
+        .shamrock:nth-child(6) { left: 65%; top: 95%; animation-delay: 5s; }
+        .shamrock:nth-child(7) { left: 35%; top: 35%; animation-delay: 2.5s; }
+        .shamrock:nth-child(8) { left: 45%; top: 75%; animation-delay: 3.5s; }
+        .shamrock:nth-child(9) { left: 55%; top: 15%; animation-delay: 4.5s; }
+        .shamrock:nth-child(10) { left: 95%; top: 45%; animation-delay: 5.5s; }
+
+        @keyframes float-shamrock {
+            0% { 
+                opacity: 0;
+                transform: translateY(100px) rotate(0deg); 
+            }
+            20% { 
+                opacity: 0.2;
+                transform: translateY(50px) rotate(10deg); 
+            }
+            50% { 
+                opacity: 0.3;
+                transform: translateY(0px) rotate(20deg); 
+            }
+            80% { 
+                opacity: 0.2;
+                transform: translateY(-50px) rotate(10deg); 
+            }
+            100% { 
+                opacity: 0;
+                transform: translateY(-100px) rotate(0deg); 
+            }
+        }
+
+        .light-beam {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, 
+                rgba(255, 215, 0, 0.1) 0%,
+                rgba(255, 215, 0, 0) 70%);
+            pointer-events: none;
+            z-index: -1;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.3; }
+        }
+
+        .accent-line {
+            position: absolute;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 215, 0, 0.2), 
+                transparent);
+            height: 1px;
+            width: 100%;
+        }
+
+        .accent-line:nth-child(1) { top: 20%; }
+        .accent-line:nth-child(2) { top: 50%; }
+        .accent-line:nth-child(3) { top: 80%; }
+
+        .social-card, .step-card, .phase-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .social-card:hover, .step-card:hover, .phase-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .navbar {
+            background-color: rgba(13, 93, 58, 0.9);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            gap: 200px;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            margin-right: 0;
+            margin-left: auto;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .buy-now {
+            background-color: var(--gold);
+            color: var(--dark-green);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .buy-now:hover {
+            color: var(--dark-green) !important;
+            opacity: 0.9;
+        }
+
+        .ca-section {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ca-text {
+            color: var(--gold);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .ca-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+            min-width: 400px;
+            justify-content: space-between;
+        }
+
+        .ca-address {
+            color: white;
+            font-family: monospace;
+            font-size: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .copy-button {
+            background-color: var(--gold);
+            color: var(--dark-green);
+            border: none;
+            border-radius: 15px;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .copy-button:hover {
+            transform: scale(1.05);
+        }
+
+        section {
+            position: relative;
+            padding: 100px 0;
+            margin: 0 auto;
+            max-width: 1200px;
+            background: rgba(13, 93, 58, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 40px auto;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            scroll-margin-top: 100px;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            color: var(--gold);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Community Section */
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 25px;
+            padding: 35px;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .social-card h3 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin: 0 0 15px 0;
+            font-weight: 600;
+        }
+
+        .social-card p {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        /* Glowing border effect */
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                var(--gold), 
+                var(--primary-green), 
+                var(--gold)
+            );
+            border-radius: 26px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-card:hover::before {
+            opacity: 0.3;
+        }
+
+        /* About Section */
+        .about-content {
+            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 0 20px;
+        }
+
+        /* Enhanced How to Buy styling */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 25px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--gold), #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: none;
+        }
+
+        .step-card h3 {
+            color: var(--gold);
+            font-size: 1.4rem;
+            margin: 15px 0;
+            font-weight: 600;
+        }
+
+        .step-card p {
+            color: #ffffff;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0 10px;
+        }
+
+        /* Add subtle hover glow effect */
+        .step-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 25px;
+            background: radial-gradient(circle at center, 
+                rgba(255, 215, 0, 0.2) 0%,
+                transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .step-card:hover::after {
+            opacity: 1;
+        }
+
+        /* Refined Roadmap styling */
+        .roadmap-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .phase-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 25px;
+            padding: 30px 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .phase-title {
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--gold), #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .phase-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 0 0;
+        }
+
+        .phase-list li {
+            margin: 12px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .phase-list li:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateX(5px);
+        }
+
+        .milestone {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Scroll fade animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced text styling */
+        p {
+            line-height: 1.8;
+            letter-spacing: 0.3px;
+        }
+
+        /* Notification Popup Style */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            right: -300px; /* Start off-screen */
+            background: rgba(22, 155, 98, 0.95);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            transition: right 0.3s ease-in-out;
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--gold);
+        }
+
+        .notification.show {
+            right: 30px;
+        }
+
+        .notification-icon {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .notification-text {
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        /* Add smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Floating emoji background */
+        .irish-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .floating-emoji {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0;
+            animation: floatEmoji 15s linear infinite;
+        }
+
+        @keyframes floatEmoji {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Gradient overlay */
+        .gradient-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center,
+                rgba(10, 10, 10, 0.7) 0%,
+                rgba(10, 10, 10, 0.9) 100%);
+        }
+
+        /* Animated background elements */
+        .bg-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .floating-symbol {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0;
+            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3));
+            animation: floatSymbol 12s ease-in-out infinite;
+        }
+
+        @keyframes floatSymbol {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Add glow effect to symbols */
+        .floating-symbol::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        /* Updated gradient mesh without circular gradients */
+        .gradient-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 215, 0, 0.05) 0%,
+                transparent 100%
+            );
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="assets/NO BACKGROUND.png" alt="LuckTardio Logo">
+            </div>
+            <div class="nav-links">
+                <a href="#community">Community</a>
+                <a href="#roadmap">Roadmap</a>
+                <a href="#how-to-buy">How to Buy</a>
+                <a href="#about">About</a>
+                <a href="https://jup.ag/swap/SOL-" target="_blank" class="buy-now">Buy Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <img src="assets/NO BACKGROUND.png" alt="LuckTardio Mascot" class="mascot-image">
+            <h1>$LuckTardio 🍀</h1>
+            <p>The luckiest memecoin of the emerald isle!</p>
+            <a href="https://jup.ag/swap/SOL-" target="_blank" class="cta-button">Buy LuckTardio</a>
+            
+            <div class="ca-section">
+                <span class="ca-text">Official CA:</span>
+                <div class="ca-container">
+                    <span class="ca-address" id="contract-address">COMING SOON</span>
+                    <button class="copy-button" onclick="copyCA()">Copy CA</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3>Lucky Rewards</h3>
+                <p>Earn lucky rewards with every transaction</p>
+            </div>
+            <div class="feature-card">
+                <h3>Community Driven</h3>
+                <p>Built by the community, for the community</p>
+            </div>
+            <div class="feature-card">
+                <h3>Pot of Gold</h3>
+                <p>Special St. Patrick's Day airdrops and events</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Community Section -->
+    <section id="community">
+        <div class="section-content">
+            <h2 class="section-title">Join Our Community</h2>
+            <div class="community-grid">
+                <a href="https://t.me/LUCKTARDIO" target="_blank" class="social-card">
+                    <h3>Telegram</h3>
+                    <p>Join our active Telegram community</p>
+                </a>
+                <a href="https://x.com/LUCK_TARDIO" target="_blank" class="social-card">
+                    <h3>Twitter</h3>
+                    <p>Follow us for the latest updates</p>
+                </a>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap">
+        <div class="section-content">
+            <h2 class="section-title">Roadmap</h2>
+            <div class="roadmap-container">
+                <div class="phase-card">
+                    <h3 class="phase-title">Phase 1</h3>
+                    <ul class="phase-list">
+                        <li>Website Launch 🚀</li>
+                        <li>Token Creation</li>
+                        <li>Community Building</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card">
+                    <h3 class="phase-title">Phase 2</h3>
+                    <ul class="phase-list">
+                        <li>Social Media Push</li>
+                        <li>Meme Campaign 🎨</li>
+                        <li>Twitter Raids</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card">
+                    <h3 class="phase-title">Phase 3</h3>
+                    <ul class="phase-list">
+                        <li>Community Growth</li>
+                        <li class="milestone">500k MC 🎯</li>
+                        <li class="milestone">1M MC 💎</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card">
+                    <h3 class="phase-title">Phase 4</h3>
+                    <ul class="phase-list">
+                        <li>Natural Growth</li>
+                        <li class="milestone">2M MC 🚀</li>
+                        <li>We All Ate 💰</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+    </section>
+
+    <!-- How to Buy Section -->
+    <section id="how-to-buy">
+        <div class="section-content">
+            <h2 class="section-title">How to Buy</h2>
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Download Phantom</h3>
+                    <p>Download Phantom or your preferred Solana wallet from the app store</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Get SOL</h3>
+                    <p>Buy SOL from any exchange and send it to your wallet</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Buy $LUCK</h3>
+                    <p>Pick from the top Solana DEXs to purchase $LUCK</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Shill $LUCK</h3>
+                    <p>Shill to all your friends and make some bread!! 🍞</p>
+                </div>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="fade-in">
+        <h2 class="section-title">About LuckTardio</h2>
+        <div class="about-content">
+            <p>LuckTardio is more than just another memecoin - it's a community-driven project inspired by the luck of the Irish. Our mission is to bring together crypto enthusiasts in a fun and rewarding environment.</p>
+            <p>With innovative tokenomics and a strong community focus, LuckTardio aims to create lasting value for all holders.</p>
+        </div>
+    </section>
+
+    <!-- Background elements -->
+    <div class="bg-elements" id="bgElements"></div>
+    <div class="gradient-mesh"></div>
+
+    <div class="light-beam"></div>
+
+    <!-- Add accent lines -->
+    <div class="accent-line"></div>
+    <div class="accent-line"></div>
+    <div class="accent-line"></div>
+
+    <!-- Add notification div at the bottom of body -->
+    <div class="notification" id="copyNotification">
+        <span class="notification-icon">✓</span>
+        <span class="notification-text">Contract Address Copied! 🍀</span>
+    </div>
+
+    <script>
+        function copyCA() {
+            const ca = document.getElementById('contract-address').textContent;
+            navigator.clipboard.writeText(ca).then(() => {
+                // Show notification
+                const notification = document.getElementById('copyNotification');
+                notification.classList.add('show');
+                
+                // Hide notification after 3 seconds
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            });
+        }
+
+        // Scroll fade animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(element => observer.observe(element));
+        });
+
+        // Smooth scroll function for navbar links
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-links a:not(.buy-now)');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if(link.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = link.getAttribute('href');
+                        const targetSection = document.querySelector(targetId);
+                        
+                        if(targetSection) {
+                            targetSection.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+
+        // Add floating shamrocks
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('shamrockContainer');
+            const shamrockCount = 15;
+
+            for (let i = 0; i < shamrockCount; i++) {
+                const shamrock = document.createElement('div');
+                shamrock.className = 'bg-shamrock';
+                shamrock.textContent = '☘️';
+                shamrock.style.left = `${Math.random() * 100}%`;
+                shamrock.style.animationDelay = `${Math.random() * 20}s`;
+                container.appendChild(shamrock);
+            }
+        });
+
+        const symbols = ['☘️', '🍀'];
+        const symbolCount = 40;
+
+        function createSymbol() {
+            const symbol = document.createElement('div');
+            symbol.className = 'floating-symbol';
+            symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            symbol.style.left = Math.random() * 100 + 'vw';
+            symbol.style.animationDelay = Math.random() * 12 + 's';
+            symbol.style.fontSize = (Math.random() * 30 + 25) + 'px';
+            return symbol;
+        }
+
+        function initBackground() {
+            const container = document.getElementById('bgElements');
+            for (let i = 0; i < symbolCount; i++) {
+                container.appendChild(createSymbol());
+            }
+
+            setInterval(() => {
+                const symbols = container.getElementsByClassName('floating-symbol');
+                for (let symbol of symbols) {
+                    const rect = symbol.getBoundingClientRect();
+                    if (rect.top < -100) {
+                        container.removeChild(symbol);
+                        container.appendChild(createSymbol());
+                    }
+                }
+            }, 1000);
+        }
+
+        document.addEventListener('DOMContentLoaded', initBackground);
+    </script>
+</body>
+</html>
+        
