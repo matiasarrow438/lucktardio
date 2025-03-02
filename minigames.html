@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuckTardio - Mini Games</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0D5D3A 0%, #169B62 50%, #0D5D3A 100%);
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            max-width: 800px;
+            width: 90%;
+        }
+
+        h1 {
+            color: gold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            color: #FFD700;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .games-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .game-card {
+            background: linear-gradient(45deg, #2C1810, #4A2511);
+            border: 4px solid gold;
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+        }
+
+        .game-button {
+            padding: 15px 30px;
+            font-size: 24px;
+            background: linear-gradient(45deg, #0D5D3A, #169B62);
+            border: 3px solid gold;
+            border-radius: 15px;
+            cursor: pointer;
+            color: gold;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .game-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .game-icon {
+            font-size: 48px;
+        }
+
+        .game-description {
+            color: #FFD700;
+            font-size: 0.9em;
+            line-height: 1.4;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .game-stats {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #FFD700;
+        }
+
+        .shamrock-decoration {
+            font-size: 24px;
+            margin: 0 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background: gold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #0D5D3A;
+            font-weight: bold;
+            transition: transform 0.2s ease;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            .game-button {
+                width: 100%;
+                min-width: unset;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="home.html" class="home-button">HOME</a>
+
+    <div class="container">
+        <h1>
+            <span class="shamrock-decoration">☘️</span>
+            Mini Games
+            <span class="shamrock-decoration">☘️</span>
+        </h1>
+        <div class="subtitle">Test your luck with our exciting mini-games!</div>
+        
+        <div class="games-container">
+            <div class="game-card">
+                <a href="coincatcher.html" class="game-button">
+                    <span class="game-icon">🪙</span>
+                    Coin Catcher
+                </a>
+                <div class="game-description">
+                    <p>Race against time to catch falling coins while avoiding dangerous bombs! Test your reflexes and collect as many coins as possible to achieve the highest score.</p>
+                    <div class="game-stats">
+                        <p>🎮 Type: Action</p>
+                        <p>⏱️ Duration: Endless</p>
+                        <p>🎯 Goal: High Score</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <a href="luckyslots.html" class="game-button">
+                    <span class="game-icon">🎰</span>
+                    Lucky Slots
+                </a>
+                <div class="game-description">
+                    <p>Try your luck at the slots! Match symbols to win tokens, with bigger bets leading to bigger rewards. Hit the jackpot by matching three shamrocks!</p>
+                    <div class="game-stats">
+                        <p>🎮 Type: Luck</p>
+                        <p>💰 Starting Tokens: 1000</p>
+                        <p>🎯 Goal: Max Tokens</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
